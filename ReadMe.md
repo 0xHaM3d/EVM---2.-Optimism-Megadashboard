@@ -1,0 +1,1 @@
+This tool was originally created for the MetricDAOs' bounty: EVM - 2. Optimism Megadashboard.
