@@ -4,6 +4,7 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 import plotly.subplots as sp
+import altair as alt
 import numpy as np
 from pandas.core.reshape.reshape import unstack
 
