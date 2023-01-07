@@ -164,19 +164,19 @@ def gat_data(query):
             'https://node-api.flipsidecrypto.com/api/v2/queries/3f6ae6bb-ec25-42d7-8faf-bdb2513f084b/data/latest'
         )
 
-
 st.write("")
 st.write("")
-average_price_daily = gat_data('$OP, BTC & ETH Daily Average Price')
+average_price_daily = gat_data('$OP Daily Average Price')
 df = average_price_daily
-fig = px.line(df, x='DATE', y=['BTC_PRICE', 'OP_PRICE'], log_y=True)
-fig.update_layout(title_text='Daily Average Price ($OP vs. $BTC)')
-st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
-
+base = alt.Chart(df).encode(x=alt.X('DATE', axis=alt.Axis(labelAngle=325)))
+line = base.mark_line(color='orange').encode(y=alt.Y('BTC_PRICE', axis=alt.Axis(grid=True)))
+bar = base.mark_line(color='purple',opacity=0.5).encode(y='OP_PRICE')
+st.altair_chart(((bar + line).resolve_scale(y='independent').properties(title='Daily $OP vs $BTC price evolution')),
+                use_container_width=True, theme=theme_plotly)
 st.write("")
 st.write("")
-average_price_daily_eth = gat_data('$OP, BTC & ETH Daily Average Price')
-df = average_price_daily_eth
-fig = px.line(df, x='DATE', y=['ETH_PRICE', 'OP_PRICE'], log_y=True)
-fig.update_layout(title_text='Daily Average Price ($OP vs. $ETH)')
-st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
+base = alt.Chart(df).encode(x=alt.X('DATE', axis=alt.Axis(labelAngle=325)))
+line = base.mark_line(color='orange').encode(y=alt.Y('ETH_PRICE', axis=alt.Axis(grid=True)))
+bar = base.mark_line(color='purple',opacity=0.5).encode(y='OP_PRICE')
+st.altair_chart(((bar + line).resolve_scale(y='independent').properties(title='Daily $OP vs $ETH price evolution')),
+                use_container_width=True, theme=theme_plotly)
