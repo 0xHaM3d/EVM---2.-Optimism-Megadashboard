@@ -4,8 +4,8 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 import plotly.subplots as sp
-import altair as alt
 import numpy as np
+import altair as alt
 from pandas.core.reshape.reshape import unstack
 
 # Global Variables
@@ -160,10 +160,11 @@ st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
 
 @st.cache(ttl=10000)
 def gat_data(query):
-    if query == '$OP, BTC & ETH Daily Average Price':
+    if query == '$OP Daily Average Price':
         return pd.read_json(
             'https://node-api.flipsidecrypto.com/api/v2/queries/3f6ae6bb-ec25-42d7-8faf-bdb2513f084b/data/latest'
         )
+
 
 st.write("")
 st.write("")
